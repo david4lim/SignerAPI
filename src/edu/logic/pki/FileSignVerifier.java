@@ -16,11 +16,11 @@ import sun.misc.BASE64Encoder;
 
 /**
  *
- * <code>FileSignVerifier</code> class allow to verify a file signed by an instance 
- * of <code>FileSigner</code> Class. It has two verification methods where one of 
- * this receives the digital certificate and public signature and another receives 
+ * <code>FileSignVerifier</code> class allow to verify a file signed by an instance
+ * of <code>FileSigner</code> Class. It has two verification methods where one of
+ * this receives the digital certificate and public signature and another receives
  * a file attached signature and digital certificate.
- * 
+ *
  * @author David Camilo Nova
  * @author Luis Fernando Muñoz
  */
@@ -29,11 +29,11 @@ public class FileSignVerifier implements SignVerifier{
     private final String algorithm = "SHA1withRSA";
     private final String provider = "SunRsaSign";
     private final String certType = "X.509";
-    
+
     @Override
     public boolean verify(File file, File publicCert, File externalSign) {
-        boolean valido=false;
-        
+        boolean valid=false;
+
         try{
             /* Import encoded public key */
             CertificateFactory certFactory = CertificateFactory.getInstance(certType);
@@ -49,7 +49,7 @@ public class FileSignVerifier implements SignVerifier{
 
             /* Input the signature bytes */
             FileInputStream sigfis = new FileInputStream(externalSign);
-            byte[] sigToVerify = new byte[sigfis.available()]; 
+            byte[] sigToVerify = new byte[sigfis.available()];
             sigfis.read(sigToVerify );
 
             sigfis.close();
@@ -68,21 +68,21 @@ public class FileSignVerifier implements SignVerifier{
             while (bufin.available() != 0) {
                 len = bufin.read(buffer);
                 sig.update(buffer, 0, len);
-                };
+            }
 
             bufin.close();
 
 
-            valido = sig.verify(sigToVerify);
+            valid = sig.verify(sigToVerify);
 
         } catch (Exception e) {
             System.err.println("Caught exception " + e.toString());
             Logger.getLogger(FileSignVerifier.class.getName()).log(Level.SEVERE, null, e);
         }
-        
-        return valido;
+
+        return valid;
     }
-    
+
     @Override
     public boolean verify(File file) {
         ZipTools tools = new ZipTools();
@@ -96,7 +96,7 @@ public class FileSignVerifier implements SignVerifier{
             }
             else if(ext.equals(".cer")){
                 cert = f;
-        
+
             }
             else{
                 fileToVerify = f;
@@ -104,5 +104,5 @@ public class FileSignVerifier implements SignVerifier{
         }
         return verify(fileToVerify, cert, externalSign);
     }
-    
+
 }
