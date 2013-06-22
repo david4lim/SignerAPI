@@ -314,8 +314,9 @@ public class KeyStoreTools {
             en = ks.aliases();
             while (en.hasMoreElements()) {
                 Object object = en.nextElement();
-                if(ks.isKeyEntry(object.toString()))
+                if(ks.isKeyEntry(object.toString())){
                     alias.add(object.toString());
+                }
             }
         } catch (KeyStoreException ex) {
             Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
@@ -352,6 +353,9 @@ public class KeyStoreTools {
      *
      * Get creation date of an alias saved on KeyStore.
      * 
+     * @param alias
+     *        {@link String} alias saved on KeyStore
+     *          
      * @return {@link Date}
      *         Creation date of alias. Return null if alias doesn't exist
      */

@@ -25,11 +25,11 @@ import sun.security.x509.*;
  */
 public class KeyTools {
     
-    protected String algorithmKey = "RSA", 
+    private String algorithmKey = "RSA", 
                      algorithmCert = "SHA1withRSA", 
                      provider = "SunRsaSign";
-    protected int keySize = 2 * 1024;
-    protected long validityCert = 365 * 86400000l;
+    private int keySize = 2 * 1024;
+    private long validityCert = 365 * 86400000l;
     /**
      *
      * Create couple of keys: Public Key and Private Key
@@ -175,7 +175,7 @@ public class KeyTools {
      */
     public String generateCSR(String DN, PrivateKey privateKey, PublicKey publicKey){
         // generate PKCS10 certificate request
-        String sigAlg = "SHA1withRSA";
+        String sigAlg = algorithmCert;
         PKCS10 pkcs10 = new PKCS10(publicKey);
         Signature signature;
         String csr = "";

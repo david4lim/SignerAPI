@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.logic.pki;
 
 import com.itextpdf.text.pdf.AcroFields;
@@ -19,13 +15,19 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
  *
- * @author david
+ * <code>PDFSignVerifier</code> class allow to verify a file signed by an instance 
+ * of <code>PDFSigner</code> Class. It has two verification methods where one of 
+ * this receives the digital certificate and public signature and another receives 
+ * a file attached signature and digital certificate.
+ * 
+ * @author David Camilo Nova
+ * @author Luis Fernando Muñoz
  */
 public class PDFSignVerifier  implements SignVerifier{
 
     @Override
     public boolean verify(File file, File publicCert, File externalSign) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return verify(file);
     }
 
     @Override

@@ -42,8 +42,8 @@ public interface SignerInterface {
      *        {@link File} <code>File</code> object to sign with private key and certificate
      * @param keyToSign
      *        {@link PrivateKey} Private Key used to sign the file object
-     * @param certificate
-     *        {@link Certificate} Certificate used to identify who sign
+     * @param chain
+     *        {@link Certificate} Certificate chain used to identify who sign
      * @return {@link File}
      *         File signed or null if there is no output
      */

@@ -51,11 +51,9 @@ public class XMLSignVerifier implements SignVerifier{
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(true);
-            Document doc =
-                dbf.newDocumentBuilder().parse(new FileInputStream(file));
+            Document doc = dbf.newDocumentBuilder().parse(new FileInputStream(file));
 
-            NodeList nl = 
-                doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+            NodeList nl = doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
             if (nl.getLength() == 0) {
                 try {
                     throw new Exception("Cannot find Signature element");
@@ -160,6 +158,7 @@ public class XMLSignVerifier implements SignVerifier{
 	    this.pk = pk;
 	}
 
+        @Override
 	public Key getKey() { return pk; }
     }
     

@@ -12,7 +12,6 @@ import java.security.cert.CertificateFactory;
 import java.util.ArrayDeque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.misc.BASE64Encoder;
 
 /**
  *
