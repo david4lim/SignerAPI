@@ -31,7 +31,6 @@ public class FileSigner implements SignerInterface{
             ArrayDeque<String> fileNames = new ArrayDeque<String>();
 
             /* Create a Signature object and initialize it with the private key */
-
             Signature dsa = Signature.getInstance(algorithm, provider); 
 
             dsa.initSign(keyToSign);
