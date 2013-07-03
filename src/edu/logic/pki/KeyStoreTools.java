@@ -171,6 +171,33 @@ public class KeyStoreTools {
     
     /**
      *
+     * Add p12 certificate to the last KeyStore loaded.
+     * 
+     * @param pathToCert
+     *        {@link String} path to p12 certificate
+     * @param password
+     *        {@link String} Password to access the KeyStore element
+     * @return {@link boolean}
+     *         True if it can add the certificate to the KeyStore or False in another way
+     */
+    public boolean addCertificateP12(String pathToCert, String password) throws KeyStoreException, FileNotFoundException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException{
+        boolean result = false;
+        
+        KeyStore p12 = KeyStore.getInstance("pkcs12");
+        p12.load(new FileInputStream(pathToCert),password.toCharArray());
+        Enumeration en = p12.aliases();
+        while (en.hasMoreElements()) {
+            String object = (String) en.nextElement();
+            PrivateKey key = (PrivateKey) p12.getKey(object, password.toCharArray());
+            Certificate[] cc = p12.getCertificateChain(object); 
+            result = addPrivateKey(object, key, password, cc);
+            
+        }
+        return result;
+    }
+    
+    /**
+     *
      * Allow to get a certificate from the current KeyStore.
      * 
      * @param alias
@@ -378,39 +405,6 @@ public class KeyStoreTools {
      */
     public KeyStore getKeyStore(){
         return ks;
-    }
-    
-    /**
-     *
-     * @param cert
-     * @throws Exception
-     */
-    public void testKeyStore(Certificate cert) throws Exception{
-        
-        Key key = ks.getKey("testkey", "password".toCharArray());
-        Certificate[] chain = ks.getCertificateChain("testkey");
-        PublicKey publicKey = chain[0].getPublicKey();
-        System.out.println(chain[0]);
-//        System.out.println(publicKey);
-//        System.out.println(key);
-        
-        Enumeration en = ks.aliases();
-        while (en.hasMoreElements()) {
-            Object object = en.nextElement();
-            System.out.println(object);
-        }
-        Key pkey = ks.getKey("certificado", "password".toCharArray());
-        chain = ks.getCertificateChain("certificado");
-        publicKey = chain[0].getPublicKey();
-        System.out.println(chain[0]);
-//        System.out.println(publicKey);
-//        System.out.println(pkey);
-        
-//        addPrivateKey("certificado", (PrivateKey) key, "password", new Certificate[]{cert});
-//        ks.setCertificateEntry("testkey", cert);
-//        System.out.println(chain[0].getPublicKey());
-//        System.out.println(keyTools.generateCSR("CN=Test, L=London, ST=Stale ,C=GB, O=Test", (PrivateKey)key, publicKey,"test.csr"));
-        
     }
     
 }
