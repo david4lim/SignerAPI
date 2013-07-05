@@ -1,19 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package signer;
 
-/**
- *
- * @author david
- */
+import edu.logic.pki.KeyStoreTools;
+import edu.logic.pki.PDFSigner;
+import java.io.File;
+
 public class Signer {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+      File fileToSign;
+
+      PDFSigner signer = new PDFSigner();
+
+      fileToSign = new File("/Users/lmparra/Documents/pruebas/prueba.pdf");
+      KeyStoreTools kst = new KeyStoreTools("ruta-del-keystore", "parafrase");
+      signer.sign(null, null, null, null);
+
     }
 }
