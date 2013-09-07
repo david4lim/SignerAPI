@@ -43,7 +43,12 @@ public class PDFSignVerifier  implements SignVerifier{
             AcroFields fields = reader.getAcroFields();
             ArrayList<String> names = fields.getSignatureNames();
             PdfPKCS7 pkcs7 = fields.verifySignature("signature");
-            isValid =  pkcs7.verify();
+            if(pkcs7 != null){
+                isValid =  pkcs7.verify();
+            }
+            else{
+                isValid = false;
+            }
         } catch (SignatureException ex) {
             Logger.getLogger(PDFSignVerifier.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
