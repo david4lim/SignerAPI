@@ -209,11 +209,36 @@ public class KeyStoreTools {
                 
               }
             }
-//            String[] aliases = this.getKeyList();
-//            for (String string : aliases) {
-//                if()
-//            }
             result = addPrivateKey(object, key, password, cc);
+            
+        }
+        return result;
+    }
+    
+    /**
+     *
+     * Add p12 certificate to the last KeyStore loaded.
+     * 
+     * @param pathToCert
+     *        {@link String} path to p12 certificate
+     * @param password
+     *        {@link String} Password to access the KeyStore element
+     * @param alias
+     *        {@link String} Alias to access the KeyStore element
+     * @return {@link boolean}
+     *         True if it can add the certificate to the KeyStore or False in another way
+     */
+    public boolean addCertificateP12(String pathToCert, String password, String alias) throws KeyStoreException, FileNotFoundException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException{
+        boolean result = false;
+        
+        KeyStore p12 = KeyStore.getInstance("pkcs12");
+        p12.load(new FileInputStream(pathToCert),password.toCharArray());
+        Enumeration en = p12.aliases();
+        while (en.hasMoreElements()) {
+            String object = (String) en.nextElement();
+            PrivateKey key = (PrivateKey) p12.getKey(object, password.toCharArray());
+            Certificate[] cc = p12.getCertificateChain(object); 
+            result = addPrivateKey(alias, key, password, cc);
             
         }
         return result;
