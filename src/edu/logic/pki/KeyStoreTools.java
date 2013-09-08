@@ -4,9 +4,11 @@ import java.io.*;
 import java.security.*;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayDeque;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -190,6 +192,27 @@ public class KeyStoreTools {
             String object = (String) en.nextElement();
             PrivateKey key = (PrivateKey) p12.getKey(object, password.toCharArray());
             Certificate[] cc = p12.getCertificateChain(object); 
+            if(object.isEmpty()){
+                if (cc[0] instanceof X509Certificate) {
+                X509Certificate x509cert = (X509Certificate) cc[0];
+
+                Principal principal = x509cert.getSubjectDN();
+                object = principal.getName().replace("CN=", "");
+                if(object.isEmpty()){
+                    principal = x509cert.getIssuerDN();
+                    object = principal.getName().replace("CN=", "");
+                }
+                if(object.isEmpty()){
+                    object = "alias_"+Integer.toString((int)(System.currentTimeMillis()/1000L), Character.MAX_RADIX)+"-"+Integer.toString((int)(new Random().nextInt()), Character.MAX_RADIX);
+                    
+                }
+                
+              }
+            }
+//            String[] aliases = this.getKeyList();
+//            for (String string : aliases) {
+//                if()
+//            }
             result = addPrivateKey(object, key, password, cc);
             
         }

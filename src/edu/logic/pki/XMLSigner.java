@@ -78,8 +78,7 @@ public class XMLSigner implements SignerInterface{
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(true);
-            Document doc = 
-                dbf.newDocumentBuilder().parse(new FileInputStream(fileToSign));
+            Document doc = dbf.newDocumentBuilder().parse(new FileInputStream(fileToSign));
 
             DOMSignContext dsc = new DOMSignContext
                 (keyToSign, doc.getDocumentElement());
@@ -122,7 +121,7 @@ public class XMLSigner implements SignerInterface{
     @Override
     public File sign(File fileToSign, PrivateKey keyToSign, Certificate certificate) {
         
-        String name = fileToSign.getAbsolutePath();
+        String name = fileToSign.getPath();
         String ext =  name.substring(name.lastIndexOf(".")+1);
         name = name.substring(0, name.lastIndexOf("."));
         

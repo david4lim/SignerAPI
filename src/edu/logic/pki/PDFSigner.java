@@ -34,6 +34,9 @@ public class PDFSigner implements SignerInterface{
     @Override
     public File sign(File fileToSign, File outputFile, PrivateKey keyToSign, Certificate certificate) {
         File signedFile = null;
+        if(keyToSign == null || certificate== null){
+            return null;
+        }
         try {
             Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
             PrivateKey pk = keyToSign;
@@ -64,7 +67,7 @@ public class PDFSigner implements SignerInterface{
     @Override
     public File sign(File fileToSign, PrivateKey keyToSign, Certificate certificate) {
         
-        String name = fileToSign.getAbsolutePath();
+        String name = fileToSign.getPath();
         String ext =  name.substring(name.lastIndexOf(".")+1);
         name = name.substring(0, name.lastIndexOf("."));
         

@@ -42,7 +42,7 @@ public class XMLSignVerifier implements SignVerifier{
 
     @Override
     public boolean verify(File file, File publicCert, File externalSign) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return verify(file);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class XMLSignVerifier implements SignVerifier{
             NodeList nl = doc.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
             if (nl.getLength() == 0) {
                 try {
-                    throw new Exception("Cannot find Signature element");
+                    return isValid;
                 } catch (Exception ex) {
                     Logger.getLogger(XMLSignVerifier.class.getName()).log(Level.SEVERE, null, ex);
                 }

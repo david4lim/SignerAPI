@@ -91,7 +91,7 @@ public class FileSigner implements SignerInterface{
     @Override
     public File sign(File fileToSign, PrivateKey keyToSign, Certificate certificate) {
         String filePath = fileToSign.getParentFile().getPath();
-        String name = fileToSign.getAbsolutePath();
+        String name = fileToSign.getPath();
         name = name.substring(0, name.lastIndexOf("."));
         
             

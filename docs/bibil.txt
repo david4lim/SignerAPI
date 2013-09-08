@@ -1,0 +1,36 @@
+1	BIBLIOGRAFÍA Y REFERENCIAS ELECTRÓNICAS
+[1]	Martin Reddy (2011). API Design for C++, 1.
+[2]	Sehanovic, J.; Tatkovic, N.; Zugaj, M.; , "University without paper," Information Technology Interfaces, 2003. ITI 2003. Proceedings of the 25th International Conference on , vol., no., pp. 73- 80, 16-19 June 2003, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1225325&isnumber=27508
+[3]	Breaux, P.J.; , "Using computer technology to support cost-effective paperless interactive technical data," AUTOTESTCON '94. IEEE Systems Readiness Technology Conference. 'Cost Effective Support Into the Next Century', Conference Proceedings. , vol., no., pp.83-87, 20-22 Sep 1994, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=381526&isnumber=8644
+[4]	Graham Shaw. 2000. Digital document integrity.  In <em>Proceedings of the 2000 ACM workshops on Multimedia</em> (MULTIMEDIA '00). ACM, New York, NY, USA,  143-144, http://doi.acm.org/10.1145/357744.357912
+[5]	Lutteroth, C.; Weber, G.; , "Going Paperless - On the Evaluation of Electronic Form Technologies," Database and Expert Systems Applications (DEXA), 2011 22nd International Workshop on , vol., no., pp.14-18, Aug. 29 2011-Sept. 2 2011
+http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6059787&isnumber=6059784
+[6]	Beryl Plimmer and Mark Apperley. 2007. Making paperless work.  In Proceedings of the 8th ACM SIGCHI New Zealand chapter's international conference on Computer-human interaction: design centered HCI (CHINZ '07). ACM, New York, NY, USA,  1-8. DOI=10.1145/1278960.1278961 http://doi.acm.org/10.1145/1278960.1278961
+[7]	Bryant, J. M.; , "The paperless book," IEE Review , vol.41, no.6, pp.245, 16 Nov 1995, 
+http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=490212&isnumber=10475
+[8]	Gilani, S.M.M.; Ahmed, J.; Abbas, M.A.; , "Electronic document management: A paperless university model," Computer Science and Information Technology, 2009. ICCSIT 2009. 2nd IEEE International Conference on , vol., no., pp.440-444, 8-11 Aug. 2009, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5234679&isnumber=5234374
+[9]	Matthew Jervis and Masood Masoodian. 2009. Digital management and retrieval of physical documents.  In <em>Proceedings of the 3rd International Conference on Tangible and Embedded Interaction</em> (TEI '09). ACM, New York, NY, USA,  47-54, http://doi.acm.org/10.1145/1517664.1517682
+[10]	Robert Carolina, Jamie Lyford, Tarlo Lyons, The Intersection of Public Key Infrastructures and the Law, Information Security Technical Report, Volume 5, Issue 4, 1 December 2000, Pages 39-52, ISSN 1363-4127, 10.1016/S1363-4127(00)04005-X, http://www.sciencedirect.com/science/article/pii/S136341270004005X
+[11]	OMG. (01 de 2011). Business Process Model and Notation. Recuperado el 08 de 05 de 2012, http://www.omg.org/spec/BPMN/2.0/PDF
+[12]	OMG. (06 de 2010). Business Process Model and Notation. Recuperado el 09 de 05 de 2012, de http://bpmnhandbook.com/01_specs/BPMN_20_spec.pdf
+[13]	Borja Sotomayor, Lisa Childers. Globus Toolkit 4: Programming Java Services, 259-269
+[14]	Pravir Chandra, Matt Messier, John Viega. Network Security with OpenSSL, 45-59
+[15]	Petra Wohlmacher. 2000. Digital certificates: a survey of revocation methods. In Proceedings of the 2000 ACM workshops on Multimedia (MULTIMEDIA '00). ACM, New York, NY, USA, 111-114. http://doi.acm.org/10.1145/357744.357892
+[16]	John R. Vacca (2004). Public key infrastructure. Building Trusted Applications and Web Services, 8-9.
+[17]	unling Zhang; , "A study on application of digital signature technology," Networking and Digital Society (ICNDS), 2010 2nd International Conference on , vol.1, no., pp.498-501, 30-31 May 2010,  http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5479249&isnumber=5479128
+[18]	Robert Carolina, Jamie Lyford, Tarlo Lyons, The Intersection of Public Key Infrastructures and the Law, Information Security Technical Report, Volume 5, Issue 4, 1 December 2000, Pages 39-52, ISSN 1363-4127, 10.1016/S1363-4127(00)04005-X, http://www.sciencedirect.com/science/article/pii/S136341270004005X
+[19]	M. Indra Sena Reddy, P.J. Bhat, Rajeev Chetwavani, K.Subba Reddy. 2011. A Practical Approach for Implementation of Public Key Infrastructure for Digital Signatures. R. G. M. College of Enginereing & Technology, Nandyal, A.P, India. School of Economics, Peking University, 176 Zhong Guan Cun Street, Beijing 100086, China. http://www.iiste.org/Journals/index.php/JIEA/article/view/703
+[20]	Long Zhang; "Summary of Digital Signature," Advances in Control and Communication, Volume 137, 115-120, 2012, Springer Berlin Heidelberg, http://dx.doi.org/10.1007/978-3-642-26007-0_16
+[21]	República de Colombia. Ley 527 de 1999. Recuperado el 18 de 02 de 2012, de https://www.contratos.gov.co/Archivos/normas/Ley_527_1999.pdf
+[22]	República de Colombia. Ley 1437 de 2011. Recuperado el 04 de 03 de 2012, de 
+http://wsp.presidencia.gov.co/Normativa/Leyes/Documents/ley143718012011.pdf
+[23]	Jeff Sutherland. Scrum Handbook, 
+[24]	Sienkiewicz, L.D.; Maciaszek, L.A.; , "Adapting scrum for third party services and network organizations," Computer Science and Information Systems (FedCSIS), 2011 Federated Conference on , vol., no., pp.329-336, 18-21 Sept. 2011, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6078217&isnumber=6078170
+[25]	Rafael P. Maranzato, Marden Neubert, and Paula Herculano. 2011. Moving back to scrum and scaling to scrum of scrums in less than one year. In Proceedings of the ACM international conference companion on Object oriented programming systems languages and applications companion (SPLASH '11). ACM, New York, NY, USA, 125-130, http://doi.acm.org/10.1145/2048147.2048186
+[26]	Atlas, A.; , "Accidental Adoption: The Story of Scrum at Amazon.com," Agile Conference, 2009. AGILE '09. , vol., no., pp.135-140, 24-28 Aug. 2009, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5261093&isnumber=5261036
+[27]	Cleviton V.F. Monteiro, Fabio Q.B. da Silva, Isabella R.M. dos Santos, Felipe Farias, Elisa S.F. Cardozo, André R.G. do A. Leitão, Dacio N.M. Neto, and Miguel J.A. Pernambuco Filho. 2011. A qualitative study of the determinants of self-managing team effectiveness in a scrum team. In Proceedings of the 4th International Workshop on Cooperative and Human Aspects of Software Engineering (CHASE '11). ACM, New York, NY, USA, 16-23, http://doi.acm.org/10.1145/1984642.1984646
+[28]	Barton, B.; , "All-Out Organizational Scrum as an Innovation Value Chain," System Sciences, 2009. HICSS '09. 42nd Hawaii International Conference on , vol., no., pp.1-6, 5-8 Jan. 2009, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4755763&isnumber=4755314
+[29]	Joshua Davies (2011). Implementing SSL/TLS. Using Cryptography and PKI, 221-281.
+[30]	Friedman, J.R.; , "An experiment in processing electronic documents," Professional Communication Conference, 1997. IPCC '97 Proceedings. Crossroads in Communication., 1997 IEEE International , vol., no., pp.193-201, 22-25 Oct 1997, http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=637046&isnumber=13778
+[31]	Sommerville, I. (2004). Software Process Model. In A. B. Tucker (Ed.), Computer Science Handbook. Florida: Champan & Hall /CRC.
+
