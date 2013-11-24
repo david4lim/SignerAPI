@@ -28,19 +28,19 @@ public class KeyStoreToolsTest {
     public KeyStoreToolsTest() {
         kst = new KeyStoreTools(kstPath, pass);
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -51,14 +51,14 @@ public class KeyStoreToolsTest {
     @Test
     public void testCreateKeyStore() {
         System.out.println("createKeyStore");
-        String path = "";
-        String password = "";
-        KeyStoreTools instance = new KeyStoreTools();
+        KeyStoreTools instance = new KeyStoreTools(kstPath, pass);
         boolean expResult = false;
 //        boolean result = instance.createKeyStore(path, password);
 //        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+
+        System.out.println("The test case was successfull");
     }
 
     /**
@@ -254,4 +254,37 @@ public class KeyStoreToolsTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+  /**
+   * Test of addCertificateP12 method, of class KeyStoreTools.
+   */
+  @Test
+  public void testAddCertificateP12_String_String() throws Exception {
+    System.out.println("addCertificateP12");
+    String pathToCert = "";
+    String password = "";
+    KeyStoreTools instance = new KeyStoreTools();
+    boolean expResult = false;
+    boolean result = instance.addCertificateP12(pathToCert, password);
+    assertEquals(expResult, result);
+    // TODO review the generated test code and remove the default call to fail.
+    fail("The test case is a prototype.");
+  }
+
+  /**
+   * Test of addCertificateP12 method, of class KeyStoreTools.
+   */
+  @Test
+  public void testAddCertificateP12_3args() throws Exception {
+    System.out.println("addCertificateP12");
+    String pathToCert = "";
+    String password = "";
+    String alias = "";
+    KeyStoreTools instance = new KeyStoreTools();
+    boolean expResult = false;
+    boolean result = instance.addCertificateP12(pathToCert, password, alias);
+    assertEquals(expResult, result);
+    // TODO review the generated test code and remove the default call to fail.
+    fail("The test case is a prototype.");
+  }
 }
