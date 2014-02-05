@@ -18,35 +18,35 @@ import java.util.logging.Logger;
  * keys and digital certificates.
  * <p>
  * It facilitates use the <code>KeyStore</code> Class of Java
- * 
+ *
  * @author David Camilo Nova
  * @author Luis Fernando Muñoz
  */
 public class KeyStoreTools {
-    
+
     private KeyStore ks;
     private String strPath;
-    
-    /**
-     * 
-     * This constructor allow to initialize the class to create after
-     * many keystores
-     */
-    public KeyStoreTools(){
-        
-    }
-    
+
     /**
      *
-     * This constructor initialize a keystore. If it exists it tries to load the KeyStore
+     * This constructor allow to initialize the class to create after
+     * many KeyStores
+     */
+    public KeyStoreTools(){
+
+    }
+
+    /**
+     *
+     * This constructor initialize a KeyStore. If it exists it tries to load the KeyStore
      * if it doesn't it creates a new KeyStore
-     * 
+     *
      * @param path
      *        {@link String} Path to save the KeyStore
      * @param password
      *        {@link String} Password to access the KeyStore
      */
-    public KeyStoreTools(String path, String password){        
+    public KeyStoreTools(String path, String password){
         File fileKeyStore = new File(path);
         if(fileKeyStore.exists()){
             loadKeyStore(path, password);
@@ -54,13 +54,13 @@ public class KeyStoreTools {
         else{
             createKeyStore(path, password);
         }
-        
+
     }
-   
+
     /**
      *
      * Create a new KeyStore setting a path to save it and a password to access it.
-     * 
+     *
      * @param path
      *        {@link String} Path to save the KeyStore
      * @param password
@@ -73,16 +73,16 @@ public class KeyStoreTools {
         if(ks == null){
             try {
                 ks = KeyStore.getInstance(KeyStore.getDefaultType());
-                
+
                 ks.load(null, null);
-                
+
                 FileOutputStream fosKeyStore = new FileOutputStream(path);
                 ks.store(fosKeyStore, password.toCharArray());
                 fosKeyStore.close();
-                
+
                 strPath = path;
                 bSuccess = true;
-                
+
             } catch (KeyStoreException ex) {
                 Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -95,12 +95,12 @@ public class KeyStoreTools {
         }
         return bSuccess;
     }
-    
+
     /**
      *
-     * Load an existing KeyStore setting a path to save it and a 
+     * Load an existing KeyStore setting a path to save it and a
      * password to access it.
-     * 
+     *
      * @param path
      *        {@link String} Path to save the KeyStore
      * @param password
@@ -110,19 +110,19 @@ public class KeyStoreTools {
      */
     public boolean loadKeyStore(String path, String password){
         boolean bSuccess = false;
-        
+
         try {
             if(ks == null){
                 ks = KeyStore.getInstance(KeyStore.getDefaultType());
                 strPath = path;
             }
-            
+
             FileInputStream fisKeyStore = new FileInputStream(path);
             ks.load(fisKeyStore, password.toCharArray());
             fisKeyStore.close();
-            
+
             bSuccess = true;
-            
+
         } catch (IOException ex) {
             Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -135,11 +135,11 @@ public class KeyStoreTools {
 
         return bSuccess;
     }
-    
+
     /**
      *
      * Add certificate to the last KeyStore loaded.
-     * 
+     *
      * @param alias
      *        {@link String} Unique alias to identify a certificate
      * @param certificate
@@ -153,12 +153,12 @@ public class KeyStoreTools {
         boolean bSuccess = false;
         try {
             ks.setCertificateEntry(alias, certificate);
-            
+
             FileOutputStream fosKeyStore = new FileOutputStream(strPath);
             ks.store(fosKeyStore, password.toCharArray());
             fosKeyStore.close();
             bSuccess = true;
-            
+
         } catch (KeyStoreException ex) {
             Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -170,11 +170,11 @@ public class KeyStoreTools {
         }
         return bSuccess;
     }
-    
+
     /**
      *
      * Add p12 certificate to the last KeyStore loaded.
-     * 
+     *
      * @param pathToCert
      *        {@link String} path to p12 certificate
      * @param password
@@ -184,14 +184,14 @@ public class KeyStoreTools {
      */
     public boolean addCertificateP12(String pathToCert, String password) throws KeyStoreException, FileNotFoundException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException{
         boolean result = false;
-        
+
         KeyStore p12 = KeyStore.getInstance("pkcs12");
         p12.load(new FileInputStream(pathToCert),password.toCharArray());
         Enumeration en = p12.aliases();
         while (en.hasMoreElements()) {
             String object = (String) en.nextElement();
             PrivateKey key = (PrivateKey) p12.getKey(object, password.toCharArray());
-            Certificate[] cc = p12.getCertificateChain(object); 
+            Certificate[] cc = p12.getCertificateChain(object);
             if(object.isEmpty()){
                 if (cc[0] instanceof X509Certificate) {
                 X509Certificate x509cert = (X509Certificate) cc[0];
@@ -204,21 +204,21 @@ public class KeyStoreTools {
                 }
                 if(object.isEmpty()){
                     object = "alias_"+Integer.toString((int)(System.currentTimeMillis()/1000L), Character.MAX_RADIX)+"-"+Integer.toString((int)(new Random().nextInt()), Character.MAX_RADIX);
-                    
+
                 }
-                
+
               }
             }
             result = addPrivateKey(object, key, password, cc);
-            
+
         }
         return result;
     }
-    
+
     /**
      *
      * Add p12 certificate to the last KeyStore loaded.
-     * 
+     *
      * @param pathToCert
      *        {@link String} path to p12 certificate
      * @param password
@@ -230,28 +230,28 @@ public class KeyStoreTools {
      */
     public boolean addCertificateP12(String pathToCert, String password, String alias) throws KeyStoreException, FileNotFoundException, IOException, NoSuchAlgorithmException, CertificateException, UnrecoverableKeyException{
         boolean result = false;
-        
+
         KeyStore p12 = KeyStore.getInstance("pkcs12");
         p12.load(new FileInputStream(pathToCert),password.toCharArray());
         Enumeration en = p12.aliases();
         while (en.hasMoreElements()) {
             String object = (String) en.nextElement();
             PrivateKey key = (PrivateKey) p12.getKey(object, password.toCharArray());
-            Certificate[] cc = p12.getCertificateChain(object); 
+            Certificate[] cc = p12.getCertificateChain(object);
             result = addPrivateKey(alias, key, password, cc);
-            
+
         }
         return result;
     }
-    
+
     /**
      *
      * Allow to get a certificate from the current KeyStore.
-     * 
+     *
      * @param alias
      *        {@link String} Unique alias to identify a certificate
-     *          
-     * @return {@link Certificate} 
+     *
+     * @return {@link Certificate}
      *         Certificate obtained of current KeyStore
      */
     public Certificate getCertificate(String alias){
@@ -261,14 +261,14 @@ public class KeyStoreTools {
         } catch (KeyStoreException ex) {
             Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return certificate;
     }
-    
+
     /**
      *
      * Add a private key to the current KeyStore and a certificate associated to this.
-     * 
+     *
      * @param alias
      *        {@link String} Unique alias to identify the private key
      * @param key
@@ -283,14 +283,14 @@ public class KeyStoreTools {
     public boolean addPrivateKey(String alias, PrivateKey key, String password, Certificate[] chain){
         boolean bSuccess = false;
         try {
-            
+
             ks.setKeyEntry(alias, key, password.toCharArray(), chain);
-            
+
             FileOutputStream fosKeyStore = new FileOutputStream(strPath);
             ks.store(fosKeyStore, password.toCharArray());
             fosKeyStore.close();
             bSuccess = true;
-            
+
         } catch (KeyStoreException ex) {
             Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -302,23 +302,23 @@ public class KeyStoreTools {
         }
         return bSuccess;
     }
-    
+
    /**
      *
      * Allow to get a key from the current KeyStore.
-     * 
+     *
      * @param alias
      *        {@link String} Unique alias to identify a key
      * @param password
-     *        {@link String} Password to access the KeyStore element        
-     * @return {@link Key} 
+     *        {@link String} Password to access the KeyStore element
+     * @return {@link Key}
      *         Key obtained of current KeyStore
      */
     public Key getKey(String alias, char[] password){
         Key pkey = null;
         try {
             pkey = ks.getKey(alias, password);
-            
+
         } catch (KeyStoreException ex) {
             Logger.getLogger(KeyStoreTools.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -328,15 +328,15 @@ public class KeyStoreTools {
         }
         return pkey;
     }
-    
+
     /**
      *
      * Allow to get a certificate chain from the current KeyStore.
-     * 
+     *
      * @param alias
      *        {@link String} Unique alias to identify a certificate
-     *          
-     * @return {@link Certificat[]} 
+     *
+     * @return {@link Certificat[]}
      *         Chain of certificates obtained of current KeyStore
      */
     public Certificate[] getCertificateChain(String alias){
@@ -348,18 +348,18 @@ public class KeyStoreTools {
         }
         return chain;
     }
-    
+
     /**
      *
      * List all certificate aliases and key aliases saved on current KeyStore.
-     * 
+     *
      * @return {@link String}
      *         Array of aliases
      */
     public String[] getAliasList(){
-        
+
         ArrayDeque<String> alias = new ArrayDeque<String>();
-        
+
         Enumeration en;
         try {
             en = ks.aliases();
@@ -372,18 +372,18 @@ public class KeyStoreTools {
         }
         return alias.toArray(new String[0]);
     }
-    
+
     /**
      *
      * List all key aliases saved on current KeyStore.
-     * 
+     *
      * @return {@link String}
      *         Array of aliases
      */
     public String[] getKeyList(){
-        
+
         ArrayDeque<String> alias = new ArrayDeque<String>();
-        
+
         Enumeration en;
         try {
             en = ks.aliases();
@@ -398,18 +398,18 @@ public class KeyStoreTools {
         }
         return alias.toArray(new String[0]);
     }
-    
+
     /**
      *
      * List all certificate aliases saved on current KeyStore.
-     * 
+     *
      * @return {@link String}
      *         Array of aliases
      */
     public String[] getCertificateList(){
-        
+
         ArrayDeque<String> alias = new ArrayDeque<String>();
-        
+
         Enumeration en;
         try {
             en = ks.aliases();
@@ -423,14 +423,14 @@ public class KeyStoreTools {
         }
         return alias.toArray(new String[0]);
     }
-    
+
     /**
      *
      * Get creation date of an alias saved on KeyStore.
-     * 
+     *
      * @param alias
      *        {@link String} alias saved on KeyStore
-     *          
+     *
      * @return {@link Date}
      *         Creation date of alias. Return null if alias doesn't exist
      */
@@ -443,16 +443,16 @@ public class KeyStoreTools {
         }
         return created;
     }
-    
+
     /**
      *
      * Return current KeyStore.
-     * 
+     *
      * @return {@link KeyStore}
      *         Current KeyStore
      */
     public KeyStore getKeyStore(){
         return ks;
     }
-    
+
 }

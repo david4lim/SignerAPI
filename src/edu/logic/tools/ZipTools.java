@@ -12,24 +12,24 @@ import java.util.zip.ZipOutputStream;
 /**
  *
  * <code>ZipTools</code> class allow to handle zip files to compress and uncompress
- * in easier way. It has two methods, <code>compressFiles</code> and 
+ * in easier way. It has two methods, <code>compressFiles</code> and
  * <code>uncompressFile</code>.
- * 
+ *
  * @author David Camilo Nova
  * @author Luis Fernando Muñoz
  */
 public class ZipTools {
- 
+
     /**
      *
      * Compresses a list of files to generate a single compressed file.
-     * 
+     *
      * @param files
      *        {@link ArrayDeque} List of all files to compress
      * @param zipFile
      *        {@link String} Whole path of the compressed file
-     * @return {@link String}  Whole path of the compressed file if is successfull
-     *                         in another way the kind of error ocurred.
+     * @return {@link String}  Whole path of the compressed file if it's success
+     *                         in another way the kind of error.
      */
     public String compressFiles(ArrayDeque<String> files, String zipFile){
         byte[] buffer = new byte[1024];
@@ -72,7 +72,7 @@ public class ZipTools {
     /**
      *
      * Uncompress a zip file in a specific path given.
-     * 
+     *
      * @param zipFile
      *        {@link String} Whole path of zip file to uncompress
      * @param path
@@ -80,7 +80,7 @@ public class ZipTools {
      * @return {@link ArrayDeque} List of files extracted of zip file
      */
     public ArrayDeque<File> uncompressFiles(String zipFile, String path){
-        
+
         byte[] buffer = new byte[1024];
         ArrayDeque<File> files = new ArrayDeque<File>();
         File fPath = new File(path);
@@ -104,7 +104,7 @@ public class ZipTools {
                     files.add(fileToSave);
                 }
             }catch(IOException ex){
-                ex.printStackTrace(); 
+                ex.printStackTrace();
             }
         }
         return files;
@@ -112,7 +112,7 @@ public class ZipTools {
     /**
      *
      * Uncompress a given zip file.
-     * 
+     *
      * @param zipFile
      *        {@link String} Whole path of zip file to uncompress
      * @return {@link ArrayDeque} List of files extracted of zip file
@@ -124,9 +124,9 @@ public class ZipTools {
         return uncompressFiles(zipFile,path);
     }
     /**
-     * 
+     *
      * Returns a new name if the file's name already exists.
-     * 
+     *
      * @param actualFileName
      *        {@link String} Current name to use
      * @return {@link String} Name that can be used
@@ -140,15 +140,15 @@ public class ZipTools {
             try{b = new Integer(actualFileName.substring(n, ext))+1;}
             catch(NumberFormatException e){b=-1;}
         }
-        if(b>0){  
+        if(b>0){
             newName = actualFileName.substring(0, n)+b+actualFileName.substring(ext);
         }
         else{
             newName = actualFileName.substring(0, ext)+"_1"+actualFileName.substring(ext);
         }
-        
+
         return newName;
     }
-    
- 
+
+
 }
