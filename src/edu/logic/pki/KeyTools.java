@@ -17,27 +17,27 @@ import sun.security.x509.*;
 
 /**
  *
- * <code>KeyTools</code> Class allow generate pair of keys, self signed certificates 
+ * <code>KeyTools</code> Class allow generate pair of keys, self signed certificates
  * and CSR (Certificate Signing Request) to handle certificates.
- * 
+ *
  * @author David Camilo Nova
  * @author Luis Fernando Muñoz
  */
 public class KeyTools {
-    
-    private String algorithmKey = "RSA", 
-                     algorithmCert = "SHA1withRSA", 
+
+    private String algorithmKey = "RSA",
+                     algorithmCert = "SHA1withRSA",
                      provider = "SunRsaSign";
     private int keySize = 2 * 1024;
     private long validityCert = 365 * 86400000l;
     /**
      *
      * Create couple of keys: Public Key and Private Key
-     * 
+     *
      * @return KeyPair
      */
     public KeyPair generateKeyPair (){
-    
+
         KeyPair pair = null;
         KeyPairGenerator keyGen;
         try {
@@ -45,30 +45,30 @@ public class KeyTools {
             SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
             keyGen.initialize(keySize, random);
             pair = keyGen.generateKeyPair();
-            
+
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(KeyTools.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(KeyTools.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return pair;
     }
-    
+
     /**
      *
      * Generate X509 self signed certificate
-     * 
-     * @param pair 
+     *
+     * @param pair
      *        {@link KeyPair} Couple of keys
-     * @param DN 
+     * @param DN
      *        {@link String}  Distinguished Name
      * @return {@link Certificate} Self Signed Certificate
      */
     public Certificate generateSelfSignedCertificate(KeyPair pair, String DN){
-        
+
         X509CertImpl cert = null;
-        try {            
+        try {
             PrivateKey privkey = pair.getPrivate();
             X509CertInfo info = new X509CertInfo();
             Date from = new Date();
@@ -89,14 +89,14 @@ public class KeyTools {
             // Sign the cert to identify the algorithm that's used.
             cert = new X509CertImpl(info);
             cert.sign(privkey, algorithmCert);
-            
+
 
             // Update the algorith, and resign.
             algo = (AlgorithmId)cert.get(X509CertImpl.SIG_ALG);
             info.set(CertificateAlgorithmId.NAME + "." + CertificateAlgorithmId.ALGORITHM, algo);
             cert = new X509CertImpl(info);
             cert.sign(privkey, algorithmCert);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(KeyTools.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CertificateException ex) {
@@ -112,12 +112,12 @@ public class KeyTools {
         }
         return cert;
     }
-    
+
     /**
      *
-     * Create a file that contains a CSR (Certificate Signing Request) using DN (Distinguished Name) 
+     * Create a file that contains a CSR (Certificate Signing Request) using DN (Distinguished Name)
      * and couple keys (Public Key and Private Key)
-     * 
+     *
      * @param DN
      *        {@link String} Distinguished Name
      * @param privateKey
@@ -126,11 +126,11 @@ public class KeyTools {
      *        {@link PublicKey} User pubic key
      * @param path
      *        {@link String} Path where file is saved
-     * @return File 
+     * @return File
      *         {@link File} with CSR
      */
     public File generateCSR(String DN, PrivateKey privateKey, PublicKey publicKey, String path){
-        
+
         PKCS10 pkcs10 = new PKCS10(publicKey);
         Signature signature;
         File csr = new File(path);
@@ -154,16 +154,16 @@ public class KeyTools {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(KeyTools.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
         return csr;
     }
-    
+
     /**
      *
-     * Create a file that contains a CSR (Certificate Signing Request) using DN (Distinguished Name) 
+     * Create a file that contains a CSR (Certificate Signing Request) using DN (Distinguished Name)
      * and couple keys (Public Key and Private Key)
-     * 
+     *
      * @param DN
      *        {@link String} Distinguished Name
      * @param privateKey
@@ -178,7 +178,7 @@ public class KeyTools {
         String sigAlg = algorithmCert;
         PKCS10 pkcs10 = new PKCS10(publicKey);
         Signature signature;
-        String csr = "";
+        String csr = null;
         try {
             signature = Signature.getInstance(sigAlg);
             signature.initSign(privateKey);
@@ -200,9 +200,9 @@ public class KeyTools {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(KeyTools.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
         return csr;
     }
-    
+
 }
