@@ -47,14 +47,16 @@ public class KeyToolsTest {
   @Test
   public void testGenerateKeyPair() {
     System.out.println("generateKeyPair");
-    KeyTools instance = new KeyTools();
-    KeyPair expResult = null;
-    KeyPair result = instance.generateKeyPair();
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
 
-    System.out.println("The test case was successfull");
+    KeyTools instance = new KeyTools();
+    KeyPair result = instance.generateKeyPair();
+
+    if(result != null) {
+      System.out.println("The test case was successfull");
+    }
+    else {
+      fail("The test case is a prototype.");
+    }
   }
 
   /**
@@ -63,19 +65,21 @@ public class KeyToolsTest {
   @Test
   public void testGenerateSelfSignedCertificate() {
     System.out.println("generateSelfSignedCertificate");
+
     KeyPair pair = null;
-    String DN = "";
+    String DN = "CN=Test, L=London, ST=Stale ,C=GB, O=Test";
     KeyTools instance = new KeyTools();
-    Certificate expResult = null;
     // Test case
     pair = instance.generateKeyPair();
 
     Certificate result = instance.generateSelfSignedCertificate(pair, DN);
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
 
-    System.out.println("The test case was successfull");
+    if(result != null) {
+      System.out.println("The test case was successfull");
+    }
+    else {
+      fail("The test case is a prototype.");
+    }
   }
 
   /**
@@ -84,19 +88,22 @@ public class KeyToolsTest {
   @Test
   public void testGenerateCSR_4args() {
     System.out.println("generateCSR");
-    String DN = "";
-    PrivateKey privateKey = null;
-    PublicKey publicKey = null;
-    String path = "";
+
+    String DN = "CN=Test, L=London, ST=Stale ,C=GB, O=Test";
+    String path = System.getProperty("user.dir") + "/TestFiles/newreq.pem";
     KeyTools instance = new KeyTools();
     File expResult = null;
     // Test case
     KeyPair pair = instance.generateKeyPair();
 
     File result = instance.generateCSR(DN, pair.getPrivate(), pair.getPublic(), path);
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    if(result.exists() && !result.isDirectory()) {
+      System.out.println("The test case was successfull");
+    }
+    else {
+      // TODO review the generated test code and remove the default call to fail.
+      fail("The test case is a prototype.");
+    }
   }
 
   /**
@@ -105,19 +112,20 @@ public class KeyToolsTest {
   @Test
   public void testGenerateCSR_3args() {
     System.out.println("generateCSR");
-    String DN = "";
-    PrivateKey privateKey = null;
-    PublicKey publicKey = null;
+
+    String DN = "CN=Test, L=London, ST=Stale ,C=GB, O=Test";
     KeyTools instance = new KeyTools();
-    String expResult = "";
+    File expResult = null;
     // Test case
     KeyPair pair = instance.generateKeyPair();
 
     String result = instance.generateCSR(DN, pair.getPrivate(), pair.getPublic());
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
 
-    System.out.println("The test case was successfull");
+    if(result != null) {
+      System.out.println("The test case was successfull");
+    }
+    else {
+      fail("The test case is a prototype.");
+    }
   }
 }

@@ -4,6 +4,7 @@
  */
 package edu.logic.tools;
 
+import java.io.File;
 import java.util.ArrayDeque;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -52,12 +53,10 @@ public class ZipToolsTest {
     files.add(System.getProperty("user.dir") + "/TestFiles/amazon.sig");
     files.add(System.getProperty("user.dir") + "/TestFiles/amazon.pdf");
 
-    ZipTools instance = new ZipTools();
-    String expResult = "";
-    String result = instance.compressFiles(files, zipFile);
+    ZipTools ziptTools= new ZipTools();
+    String expResult = System.getProperty("user.dir") + "/TestFiles/testFiles.zip";
+    String result = ziptTools.compressFiles(files, zipFile);
     assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
 
     System.out.println("The test case was successfull");
   }
@@ -68,14 +67,24 @@ public class ZipToolsTest {
   @Test
   public void testUncompressFiles_String_String() {
     System.out.println("uncompressFiles");
-    String zipFile = System.getProperty("user.dir") + "/TestFiles/testFiles.zip";
-    String path = System.getProperty("user.dir") + "/TestFiles/testFiles2";
+    // Expected result
+    File file1 = new File(System.getProperty("user.dir") + "/TestFiles/uncompress/amazon.cer");
+    File file2 = new File(System.getProperty("user.dir") + "/TestFiles/uncompress/amazon.sig");
+    File file3 = new File(System.getProperty("user.dir") + "/TestFiles/uncompress/amazon.pdf");
+
+    String zipFile = System.getProperty("user.dir") + "/TestFiles/compress.zip";
+    String path = System.getProperty("user.dir") + "/TestFiles/uncompress";
+
     ZipTools instance = new ZipTools();
-    ArrayDeque expResult = null;
+
+    ArrayDeque expResult = new ArrayDeque();
+    expResult.add(file1);
+    expResult.add(file2);
+    expResult.add(file3);
+
     ArrayDeque result = instance.uncompressFiles(zipFile, path);
+    
     assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
 
     System.out.println("The test case was successfull");
   }
@@ -86,14 +95,23 @@ public class ZipToolsTest {
   @Test
   public void testUncompressFiles_String() {
     System.out.println("uncompressFiles");
+    // Expected result
+    File file1 = new File(System.getProperty("user.dir") + "/TestFiles/compress/amazon.cer");
+    File file2 = new File(System.getProperty("user.dir") + "/TestFiles/compress/amazon.sig");
+    File file3 = new File(System.getProperty("user.dir") + "/TestFiles/compress/amazon.pdf");
+
     // Test file
-    String zipFile = System.getProperty("user.dir") + "/TestFiles/testFiles.zip";
+    String zipFile = System.getProperty("user.dir") + "/TestFiles/compress.zip";
     ZipTools instance = new ZipTools();
-    ArrayDeque expResult = null;
+
+    ArrayDeque expResult = new ArrayDeque();
+    expResult.add(file1);
+    expResult.add(file2);
+    expResult.add(file3);
+
     ArrayDeque result = instance.uncompressFiles(zipFile);
+
     assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
 
     System.out.println("The test case was successfull");
   }
