@@ -205,4 +205,11 @@ public class KeyTools {
         return csr;
     }
 
+    public boolean isValidCertificate(Certificate certToValidate, Certificate[] trustCertificates){
+        return false;
+    }
+    
+    public boolean isValidCertificate(Certificate certToValidate, String keyStorePath, char[] keyStorePass){
+        return false;
+    }
 }

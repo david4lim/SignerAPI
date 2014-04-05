@@ -118,7 +118,11 @@ public class KeyStoreTools {
             }
 
             FileInputStream fisKeyStore = new FileInputStream(path);
-            ks.load(fisKeyStore, password.toCharArray());
+             if(password != null){
+                ks.load(fisKeyStore, password.toCharArray());
+             } else{
+                ks.load(fisKeyStore, null);
+             }
             fisKeyStore.close();
 
             bSuccess = true;
